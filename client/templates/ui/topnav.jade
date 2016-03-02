@@ -1,0 +1,26 @@
+template(name='topnav')
+
+	ul
+		li
+			a(href='{{pathFor route="home"}}') home
+
+		li
+			a(href='{{pathFor route="organizations"}}') organizations
+			ul
+				li
+					a(href='{{pathFor route="organizationsAdd"}}') add organization
+
+		li
+			a(href='{{pathFor route="patents"}}') patents
+			ul
+				li
+					a(href='{{pathFor route="patentsAdd"}}') add patent
+
+		li
+			a(href='{{pathFor route="users"}}') users
+			ul
+				li
+					a(href='{{pathFor route="usersAdd"}}') add user
+
+		li
+			a(href='#' onclick='Meteor.logout();') Logout

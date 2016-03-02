@@ -1,0 +1,10 @@
+template(name='organizations')
+
+	ul
+		each organizations
+			li
+				a {{name}}
+
+template(name='organizationsAdd')
+
+	+quickForm collection='Organizations' id='organizationsAddForm' type='insert'

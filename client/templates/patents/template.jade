@@ -1,0 +1,12 @@
+template(name='patents')
+
+	h1 专利
+
+	ul
+		each patents
+			li
+				a {{title}}
+
+template(name='patentsAdd')
+
+	+quickForm collection='Patents' id='patentsAddForm' type='insert'
