@@ -1,0 +1,72 @@
+//- roles list
+
+template(name='roles')
+
+	h1 roles
+
+	+tableDefault
+
+		thead
+
+			tr
+				th 角色
+
+				th 操作
+
+		tbody
+
+			each roles
+
+				tr
+
+					td= title
+
+					td
+						a(href='{{pathFor route="rolesUpdate"}}') 编辑
+						+removeBtn method='rolesRemove'
+
+//- roles add
+
+template(name='rolesAdd')
+
+	h1 roles add
+
+	+rolesForm
+
+//- roles update
+
+template(name='rolesUpdate')
+
+	h1 roles update
+
+	+rolesForm
+
+//- roles form
+
+template(name='rolesForm')
+
+	form#rolesForm
+
+		input(type='text' name='title' placeholder='角色' value='{{title}}')
+
+		+permissions
+
+		input(type='submit')
+
+//- 选择权限的表单
+
+template(name='permissions')
+
+	each getPermissionsLabel
+
+		div
+
+			h5 {{this}}
+
+			each getPermissionsByLabel this
+
+				label
+
+					input(type='checkbox' name='permissions[]' value='{{code}}')
+
+					| {{label}}

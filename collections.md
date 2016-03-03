@@ -6,6 +6,11 @@
 
 	}
 
+
+### Roles
+
+> 角色
+
 ### Organizations
 
 > 机构组织
@@ -36,17 +41,18 @@
 > 专利
 
 	Patents: {
-		title: String,
-		desc: String,
-		applicationNo: String,
-		applicationDate: Date,
-		applicant: String,
-		address: String,
-		inventor: String,
-		_category1: String,
-		_category2: String,
-		_publishNo: String,
-		_publishDate: Date,
-		agency: String,
-		agent: String
+		title: String, // 发明名称
+		desc: String, // 摘要
+		applicationNo: String, // 申请号
+		applicationDate: Date, // 申请日
+		applicant: String, // 申请人
+		address: String, // 地址
+		inventor: String, // 发明（设计）人
+		_category1: String, // 主分类号
+		_category2: String, // 分类号
+		_publishNo: String, // 公开号
+		_publishDate: Date, // 公开日
+		agency: String, // 专利代理机构
+		agent: String, // 代理人
+		attachments: Array // 附件（专利文件等）
 	}

@@ -2,7 +2,13 @@
 
 template(name='users')
 
-	ul
-		each users
-			li
-				a {{username}}
+	+tableDefault
+
+		tbody
+
+			each users
+
+				tr
+
+					td {{username}}
+					td
