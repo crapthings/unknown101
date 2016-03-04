@@ -31,6 +31,12 @@ Template.rolesUpdate.viewmodel
 
 Template.permissions.viewmodel
 
+	events:
+
+		'click #check-all': (e, t) ->
+			checked = ($ t.find 'input').prop('checked')
+			($ t.findAll 'input').prop 'checked', !checked
+
 	onRendered: ->
 		_.each @permissions && @permissions(), (p) ->
 			($ "[value=\"#{p}\"]").attr 'checked', 'checked'

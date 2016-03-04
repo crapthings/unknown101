@@ -13,6 +13,9 @@ Router.route '/users', ->
 Router.route '/users/add', ->
 	@render 'usersAdd',
 		data: ->
+			organizations: ->
+				Organizations.find {}
+
 			roles: ->
 				Roles.find {}
 ,
@@ -26,6 +29,9 @@ Router.route '/users/update/:_id', ->
 
 			user: =>
 				Meteor.users.findOne @params._id
+
+			organizations: ->
+				Organizations.find {}
 
 			roles: ->
 				Roles.find {}

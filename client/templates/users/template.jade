@@ -9,6 +9,8 @@ template(name='users')
 			tr
 				th 用户名
 
+				th 所属机构
+
 				th 角色
 
 				th 操作
@@ -20,6 +22,8 @@ template(name='users')
 				tr
 
 					td {{username}}
+
+					td {{organization.title}}
 
 					td {{roleLabels}}
 
@@ -61,13 +65,29 @@ template(name='usersForm')
 
 		div
 
+			select(name='organizationId')
+
+				each organizations
+
+					+usersFormOrganizationItem
+
+		div
+
 			each roles
 
-				+roleItem
+				+usersFormRoleItem
 
 		input(type='submit')
 
-template(name='roleItem')
+//-
+
+template(name='usersFormOrganizationItem')
+
+	option(value='{{_id}}' selected='{{setSelected ../user.organizationId _id}}') {{title}}
+
+//-
+
+template(name='usersFormRoleItem')
 
 	label
 

@@ -14,6 +14,10 @@ _ = lodash
 
 Meteor.users.helpers
 
+	organization: ->
+		console.log @
+		Organizations.findOne @organizationId
+
 	roleLabels: ->
 
 		(_.map Roles.find({ _id: { $in: @rolesId or [] } }).fetch(), 'title').toString() or '未确定'

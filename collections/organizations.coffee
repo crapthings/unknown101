@@ -2,6 +2,6 @@
 
 Organizations.attachSchema new SimpleSchema
 
-	name:
+	title:
 		type: String
 		label: '名称'

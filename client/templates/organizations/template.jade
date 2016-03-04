@@ -1,9 +1,25 @@
 template(name='organizations')
 
-	ul
-		each organizations
-			li
-				a {{name}}
+	+tableDefault
+
+		thead
+
+			tr
+
+				th 组织机构名称
+
+				th 操作
+
+		tbody
+
+			each organizations
+
+				tr
+
+					td {{title}}
+
+					td
+						+removeBtn method='organizationsRemove'
 
 template(name='organizationsAdd')
 

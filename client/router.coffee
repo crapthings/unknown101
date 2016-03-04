@@ -3,14 +3,14 @@
 Router.configure
 	layoutTemplate: 'layout'
 
-# handle server down
+# handle server down in production
 
-Router.onBeforeAction ->
-	unless Meteor.status().connected
-		@layout 'blank'
-		@render 'serverdown'
-	else
-		do @next
+# Router.onBeforeAction ->
+# 	unless Meteor.status().connected
+# 		@layout 'blank'
+# 		@render 'serverdown'
+# 	else
+# 		do @next
 
 # 未登录
 
