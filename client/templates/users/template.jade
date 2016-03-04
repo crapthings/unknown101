@@ -4,6 +4,15 @@ template(name='users')
 
 	+tableDefault
 
+		thead
+
+			tr
+				th 用户名
+
+				th 角色
+
+				th 操作
+
 		tbody
 
 			each users
@@ -11,4 +20,57 @@ template(name='users')
 				tr
 
 					td {{username}}
+
+					td {{roleLabels}}
+
 					td
+						a(href='{{pathFor route="usersUpdate"}}') 编辑
+						+removeBtn method='usersRemove'
+
+//- users add
+
+template(name='usersAdd')
+
+	h1 users add
+
+	+usersForm
+
+//- users update
+
+template(name='usersUpdate')
+
+	h1 users update
+
+	+usersForm
+
+//- users form
+
+template(name='usersForm')
+
+	form#usersForm
+
+		div
+
+			input(type='text' name='username' placeholder='用户名' value='{{user.username}}')
+
+		unless user
+
+			div
+
+				input(type='password' name='password' placeholder='密码')
+
+		div
+
+			each roles
+
+				+roleItem
+
+		input(type='submit')
+
+template(name='roleItem')
+
+	label
+
+		input(type='checkbox' name='rolesId[]' value='{{_id}}' checked='{{includes ../user.rolesId _id}}')
+
+		| {{title}}

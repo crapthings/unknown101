@@ -20,5 +20,3 @@
 		{ code: 'UPDATE_ORGANIZATION', label: '编辑组织机构'}
 		{ code: 'REMOVE_ORGANIZATION', label: '删除组织机构'}
 	]
-
-_permissions = ['VIEW_ROLE']

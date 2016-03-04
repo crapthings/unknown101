@@ -1,10 +1,15 @@
+#
+
 _ = lodash
 
-# feed dummy data
+#
 
+# Meteor.users.remove {}
 # Roles.remove {}
 Organizations.remove {}
 Patents.remove {}
+
+# feed dummy data when server fully started
 
 Meteor.startup ->
 
