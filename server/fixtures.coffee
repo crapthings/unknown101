@@ -2,12 +2,19 @@
 
 _ = lodash
 
-#
+# 12
 
 # Meteor.users.remove {}
 # Roles.remove {}
 Organizations.remove {}
 Patents.remove {}
+
+unless Organizations.findOne { root: true }
+
+	rootId = Organizations.insert
+		title: 'root集团'
+		init: true
+		parentId: 0
 
 # feed dummy data when server fully started
 
@@ -23,17 +30,46 @@ Meteor.startup ->
 			username: 'demo'
 			password: 'demo'
 
-	unless Organizations.findOne { root: true }
+	# randomize org tree
 
-		rootId = Organizations.insert
-			title: 'root集团'
-			root: true
+	# level 1
 
 	_.times 6, ->
-
 		Organizations.insert
 			title: _.sample fakeOrgs
 			parentId: rootId
+		, (err, id) ->
+
+			# level 2
+
+			_.times _.random(3), ->
+				Organizations.insert
+					title: _.sample fakeOrgs
+					parentId: id
+				, (err, id) ->
+
+					# level 3
+
+					_.times _.random(5), ->
+						Organizations.insert
+							title: _.sample fakeOrgs
+							parentId: id
+						, (err, id) ->
+
+							#  level 4
+
+							_.times _.random(4), ->
+								Organizations.insert
+									title: _.sample fakeOrgs
+									parentId: id
+								, (err, id) ->
+
+									#  level 5
+
+									_.times _.random(2), ->
+										Organizations.insert
+											title: _.sample fakeOrgs
+											parentId: id
 
 #
 

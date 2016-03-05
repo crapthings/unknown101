@@ -10,19 +10,23 @@ Organizations.attachSchema new SimpleSchema
 		type: String
 		label: '名称'
 
-	root:
+	init:
 		type: Boolean
 		optional: true
 
 	parentId:
 		type: String
 		optional: true
+		unique: false
+		index: false
 
 #
 
 Organizations.helpers
 
 	parent: -> Organizations.findOne @parentId
+
+	children: -> Organizations.find { parentId: @_id }
 
 #
 

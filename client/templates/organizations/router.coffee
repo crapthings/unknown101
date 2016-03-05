@@ -3,7 +3,10 @@
 Router.route '/organizations', ->
 	@render 'organizations',
 		data: ->
-			organizations: do Organizations.find
+
+			_tree: -> Organizations.findOne { init: true }
+
+			organizations: -> Organizations.find {}
 ,
 	name: 'organizations'
 
