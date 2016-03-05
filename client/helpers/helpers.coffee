@@ -1,5 +1,7 @@
 _ = lodash
 
+Template.registerHelper 'system', -> System.findOne { init: yes }
+
 #######################
 # global form helpers #
 #######################

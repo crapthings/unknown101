@@ -8,6 +8,8 @@ template(name='organizations')
 
 				th 组织机构名称
 
+				th 上级
+
 				th 操作
 
 		tbody
@@ -18,14 +20,16 @@ template(name='organizations')
 
 					td {{title}}
 
+					td {{parent.title}}
+
 					td
 						a(href='{{pathFor route="organizationsUpdate"}}') 编辑
 						+removeBtn method='organizationsRemove'
 
 template(name='organizationsAdd')
 
-	+quickForm collection='Organizations' id='organizationsAddForm' type='insert'
+	+quickForm collection='Organizations' id='organizationsAddForm' type='insert' omitFields='root,parentId'
 
 template(name='organizationsUpdate')
 
-	+quickForm collection='Organizations' doc=this id='organizationsUpdateForm' type='update'
+	+quickForm collection='Organizations' doc=this id='organizationsUpdateForm' type='update' omitFields='root,parentId'

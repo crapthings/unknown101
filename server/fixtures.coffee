@@ -6,7 +6,7 @@ _ = lodash
 
 # Meteor.users.remove {}
 # Roles.remove {}
-# Organizations.remove {}
+Organizations.remove {}
 Patents.remove {}
 
 # feed dummy data when server fully started
@@ -23,12 +23,22 @@ Meteor.startup ->
 			username: 'demo'
 			password: 'demo'
 
-	unless Organizations.findOne { title: '集团1' }
+	unless Organizations.findOne { root: true }
+
+		rootId = Organizations.insert
+			title: 'root集团'
+			root: true
+
+	_.times 6, ->
 
 		Organizations.insert
-			title: '集团1'
+			title: _.sample fakeOrgs
+			parentId: rootId
 
-	_.times 50, ->
+#
+
+	_.times 200, ->
+
 		Patents.insert
 			title: do Random.id
 			desc: do Random.id
