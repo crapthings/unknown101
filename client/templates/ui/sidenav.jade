@@ -1,0 +1,33 @@
+template(name='sidenav')
+
+	ul.nav.nav-pills.nav-stacked
+
+		li
+			a(href='{{pathFor route="home"}}') 首页
+
+		li
+			a(href='{{pathFor route="organizations"}}') 组织机构
+			ul
+				li
+					a(href='{{pathFor route="organizationsAdd"}}') add organization
+
+		li
+			a(href='{{pathFor route="users"}}') 用户
+			ul
+				li
+					a(href='{{pathFor route="usersAdd"}}') add user
+
+		li
+			a(href='{{pathFor route="roles"}}') 角色
+			ul
+				li
+					a(href='{{pathFor route="rolesAdd"}}') add role
+
+		li
+			a(href='{{pathFor route="patents"}}') 专利
+			ul
+				li
+					a(href='{{pathFor route="patentsAdd"}}') add patent
+
+		li
+			a(href='#' onclick='Meteor.logout();') 注销

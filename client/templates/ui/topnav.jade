@@ -1,32 +1,9 @@
 template(name='topnav')
 
-	ul
-		li
-			a(href='{{pathFor route="home"}}') home
+	nav.navbar.navbar-default.navbar-fixed-top
 
-		li
-			a(href='{{pathFor route="organizations"}}') organizations
-			ul
-				li
-					a(href='{{pathFor route="organizationsAdd"}}') add organization
+		.container
 
-		li
-			a(href='{{pathFor route="patents"}}') patents
-			ul
-				li
-					a(href='{{pathFor route="patentsAdd"}}') add patent
+			p.navbar-text.navbar-right
 
-		li
-			a(href='{{pathFor route="users"}}') users
-			ul
-				li
-					a(href='{{pathFor route="usersAdd"}}') add user
-
-		li
-			a(href='{{pathFor route="roles"}}') roles
-			ul
-				li
-					a(href='{{pathFor route="rolesAdd"}}') add role
-
-		li
-			a(href='#' onclick='Meteor.logout();') Logout
+				a.navbar-link {{currentUser.username}}

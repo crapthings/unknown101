@@ -4,7 +4,7 @@ template(name='organizations')
 
 		li
 
-			a {{_tree.title}}
+			a(href='#') {{_tree.title}}
 
 			if _tree.children
 
@@ -18,7 +18,9 @@ template(name='organizationItem')
 
 	li
 
-		a {{title}}
+		a.ui-show-invisible-on-hover(href='#') {{title}}
+
+			a.ui-mgl.ui-invisible.method-add(href='#') 添加
 
 		if children
 
@@ -29,8 +31,8 @@ template(name='organizationItem')
 
 template(name='organizationsAdd')
 
-	+quickForm collection='Organizations' id='organizationsAddForm' type='insert' omitFields='root,parentId'
+	+quickForm collection='Organizations' id='organizationsAddForm' type='insert' omitFields='init,parentId'
 
 template(name='organizationsUpdate')
 
-	+quickForm collection='Organizations' doc=this id='organizationsUpdateForm' type='update' omitFields='root,parentId'
+	+quickForm collection='Organizations' doc=this id='organizationsUpdateForm' type='update' omitFields='init,parentId'

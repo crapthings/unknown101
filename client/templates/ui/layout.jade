@@ -1,5 +1,15 @@
 template(name='layout')
+
+	+topnav
+
 	.container
-		+topnav
-	.container
-		+yield
+
+		.row
+
+			.col-md-3
+
+				+sidenav
+
+			.col-md-9
+
+				+yield
