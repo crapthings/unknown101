@@ -1,3 +1,9 @@
+#
+
+_ = lodash
+
+#
+
 @_permissions =
 
 	'用户': [
@@ -20,3 +26,7 @@
 		{ code: 'UPDATE_ORGANIZATION', label: '编辑组织机构'}
 		{ code: 'REMOVE_ORGANIZATION', label: '删除组织机构'}
 	]
+
+#
+
+@_permissionsCode = _.chain(_permissions).values().flatten().map('code').value()

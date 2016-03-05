@@ -5,3 +5,9 @@ Accounts.onCreateUser (opt, user) ->
 	user['rolesId'] = opt.rolesId or []
 
 	return user
+
+#
+
+Meteor.methods
+
+	'usersAdd': (opt) -> Accounts.createUser opt

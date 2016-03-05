@@ -19,8 +19,13 @@ template(name='organizations')
 					td {{title}}
 
 					td
+						a(href='{{pathFor route="organizationsUpdate"}}') 编辑
 						+removeBtn method='organizationsRemove'
 
 template(name='organizationsAdd')
 
 	+quickForm collection='Organizations' id='organizationsAddForm' type='insert'
+
+template(name='organizationsUpdate')
+
+	+quickForm collection='Organizations' doc=this id='organizationsUpdateForm' type='update'

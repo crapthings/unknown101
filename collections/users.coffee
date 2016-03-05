@@ -14,13 +14,11 @@ _ = lodash
 
 Meteor.users.helpers
 
-	organization: ->
-		console.log @
-		Organizations.findOne @organizationId
+	organization: -> Organizations.findOne @organizationId
 
-	roleLabels: ->
+	roleLabels: -> _.chain(findAllRoles @rolesId).map('title').value().join(', ') or '未分配'
 
-		(_.map Roles.find({ _id: { $in: @rolesId or [] } }).fetch(), 'title').toString() or '未确定'
+	permissions: -> _.chain(findAllRoles @rolesId).map('permissions').flatten().value()
 
 #
 
@@ -30,19 +28,20 @@ Meteor.users.before.update (userId, doc) -> _.omit doc, 'password'
 
 Meteor.methods
 
-	'usersUpdate': (id, opt) ->
-		Meteor.users.update id, $set: opt
+	'usersUpdate': (id, opt) -> Meteor.users.update id, $set: opt
 
 	'usersRemove': (id) -> Meteor.users.remove id
 
+#
+
 if Meteor.isServer
-
-	Meteor.methods
-
-		'usersAdd': (opt) -> Accounts.createUser opt
 
 	Meteor.publish '', ->
 
 		Meteor.users.find {},
 			fields:
 				services: false
+
+#
+
+findAllRoles = (rolesId) -> Roles.find({ _id: { $in: rolesId or [] } }).fetch()

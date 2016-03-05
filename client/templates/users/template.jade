@@ -77,6 +77,10 @@ template(name='usersForm')
 
 				+usersFormRoleItem
 
+		div
+
+			+userPermissions
+
 		input(type='submit')
 
 //-
@@ -91,6 +95,24 @@ template(name='usersFormRoleItem')
 
 	label
 
-		input(type='checkbox' name='rolesId[]' value='{{_id}}' checked='{{includes ../user.rolesId _id}}')
+		input.data-rolesId(type='checkbox' name='rolesId[]' value='{{_id}}' checked='{{includes ../user.rolesId _id}}')
 
 		| {{title}}
+
+//-
+
+template(name='userPermissions')
+
+	each getPermissionsLabel
+
+		div
+
+			h5 {{this}}
+
+			each getPermissionsByLabel this
+
+				label
+
+					input.data-permissions(type='checkbox' value='{{code}}' checked='{{includes ../../user.permissions code}}' disabled)
+
+					| {{label}}
