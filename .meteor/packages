@@ -36,3 +36,7 @@ twbs:bootstrap
 random
 reactive-var
 msavin:mongol
+meteorhacks:npm
+
+
+npm-container

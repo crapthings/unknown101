@@ -1,3 +1,5 @@
+_ = lodash
+
 Template.organizations.viewmodel
 
 	events:
@@ -10,6 +12,9 @@ Template.organizations.viewmodel
 					title: title
 					parentId: t.data._tree()._id
 				Meteor.call 'organizationsAdd', opt
+
+		'change .method-search': (e, t) ->
+			Session.set('search-organization-by-title', e.currentTarget.value)
 
 Template.organizationItem.viewmodel
 

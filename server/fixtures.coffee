@@ -2,6 +2,8 @@
 
 _ = lodash
 
+LTT = Meteor.npmRequire 'list-to-tree'
+
 # 12
 
 # Meteor.users.remove {}
@@ -34,44 +36,57 @@ Meteor.startup ->
 
 	# level 1
 
-	# _.times 4, ->
-	# 	Organizations.insert
-	# 		title: _.sample fakeOrgs
-	# 		parentId: rootId
-	# 	, (err, id) ->
+	_.times 2, ->
+		Organizations.insert
+			title: _.sample fakeOrgs
+			parentId: rootId
+			ancestors: [rootId]
+		, (err, id) ->
 
-	# 		# level 2
+			lv2 = id
 
-	# 		_.times _.random(3), ->
-	# 			Organizations.insert
-	# 				title: _.sample fakeOrgs
-	# 				parentId: id
-	# 			, (err, id) ->
+			# level 2
 
-	# 				# level 3
+			_.times _.random(1, 2), ->
+				Organizations.insert
+					title: _.sample fakeOrgs
+					parentId: lv2
+					ancestors: [rootId, lv2]
+				, (err, id) ->
 
-	# 				_.times _.random(3), ->
-	# 					Organizations.insert
-	# 						title: _.sample fakeOrgs
-	# 						parentId: id
-	# 					, (err, id) ->
+					lv3 = id
 
-	# 						#  level 4
+					# level 3
 
-	# 						_.times _.random(3), ->
-	# 							Organizations.insert
-	# 								title: _.sample fakeOrgs
-	# 								parentId: id
-	# 							, (err, id) ->
+					_.times _.random(1, 2), ->
+						Organizations.insert
+							title: _.sample fakeOrgs
+							parentId: lv3
+							ancestors: [rootId, lv2, lv3]
+						, (err, id) ->
 
-	# 								#  level 5
+							lv4 = id
 
-	# 								_.times _.random(3), ->
-	# 									Organizations.insert
-	# 										title: _.sample fakeOrgs
-	# 										parentId: id
+							#  level 4
 
-#
+							_.times _.random(1, 2), ->
+								Organizations.insert
+									title: _.sample fakeOrgs
+									parentId: lv4
+									ancestors: [rootId, lv2, lv3, lv4]
+								, (err, id) ->
+
+									lv5 = id
+
+									#  level 5
+
+									_.times _.random(1, 2), ->
+										Organizations.insert
+											title: _.sample fakeOrgs
+											parentId: lv5
+											ancestors: [rootId, lv2, lv3, lv4, lv5]
+
+	#
 
 	_.times 200, ->
 
@@ -89,3 +104,19 @@ Meteor.startup ->
 			_publishDate: new Date()
 			agency: do Random.id
 			agent: do Random.id
+
+	#
+
+	# Meteor.setTimeout ->
+
+	# 	orgs = Organizations.find().fetch()
+
+	# 	ltt = new LTT orgs,
+	# 		key_id: '_id'
+	# 		key_parent: 'parentId'
+
+	# 	tree = ltt.GetTree()
+
+	# 	console.log JSON.stringify tree, null, 4
+
+	# , 2000

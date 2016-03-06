@@ -1,20 +1,22 @@
 template(name='organizations')
 
+	input.method-search(type='search' placeholder='搜索')
+
 	ul
 
 		li
 
-			a.ui-show-invisible-on-hover(href='#') {{_tree.title}}
+			a.ui-show-invisible-on-hover(href='#') {{root.title}}
 
 				a.ui-mgl.ui-invisible.method-add(href='#') 增设
 
-				a.ui-mgl.ui-invisible(href='{{pathFor route="organizationsUpdate" data=_tree}}') 编辑
+				a.ui-mgl.ui-invisible(href='{{pathFor route="organizationsUpdate" data=root}}') 编辑
 
-			if _tree.children
+			if root.children
 
 				ul
 
-					each _tree.children
+					each root.children
 
 						+organizationItem
 

@@ -1,5 +1,9 @@
 #
 
+_ = lodash
+
+#
+
 @Organizations = new Mongo.Collection 'organizations'
 
 #
@@ -16,9 +20,14 @@ Organizations.attachSchema new SimpleSchema
 
 	parentId:
 		type: String
+		index: true
+
+	ancestors:
+		type: Array
 		optional: true
-		unique: false
-		index: false
+
+	'ancestors.$':
+		type: String
 
 #
 
