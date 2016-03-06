@@ -30,6 +30,10 @@ Organizations.helpers
 
 #
 
+Organizations.before.remove (userId, doc) -> no if Organizations.findOne { parentId: doc._id }
+
+#
+
 Meteor.methods
 
 	'organizationsAdd': (opt) -> Organizations.insert opt

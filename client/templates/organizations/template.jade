@@ -4,7 +4,11 @@ template(name='organizations')
 
 		li
 
-			a(href='#') {{_tree.title}}
+			a.ui-show-invisible-on-hover(href='#') {{_tree.title}}
+
+				a.ui-mgl.ui-invisible.method-add(href='#') 增设
+
+				a.ui-mgl.ui-invisible(href='{{pathFor route="organizationsUpdate" data=_tree}}') 编辑
 
 			if _tree.children
 
@@ -20,7 +24,11 @@ template(name='organizationItem')
 
 		a.ui-show-invisible-on-hover(href='#') {{title}}
 
-			a.ui-mgl.ui-invisible.method-add(href='#') 添加
+			a.ui-mgl.ui-invisible.method-add(href='#') 增设
+
+			a.ui-mgl.ui-invisible(href='{{pathFor route="organizationsUpdate"}}') 编辑
+
+			+removeLink class='ui-mgl ui-invisible method-remove' method='organizationsRemove'
 
 		if children
 

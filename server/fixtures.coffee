@@ -6,7 +6,7 @@ _ = lodash
 
 # Meteor.users.remove {}
 # Roles.remove {}
-Organizations.remove {}
+Organizations.direct.remove {}
 Patents.remove {}
 
 unless Organizations.findOne { root: true }
@@ -34,42 +34,42 @@ Meteor.startup ->
 
 	# level 1
 
-	_.times 6, ->
-		Organizations.insert
-			title: _.sample fakeOrgs
-			parentId: rootId
-		, (err, id) ->
+	# _.times 4, ->
+	# 	Organizations.insert
+	# 		title: _.sample fakeOrgs
+	# 		parentId: rootId
+	# 	, (err, id) ->
 
-			# level 2
+	# 		# level 2
 
-			_.times _.random(3), ->
-				Organizations.insert
-					title: _.sample fakeOrgs
-					parentId: id
-				, (err, id) ->
+	# 		_.times _.random(3), ->
+	# 			Organizations.insert
+	# 				title: _.sample fakeOrgs
+	# 				parentId: id
+	# 			, (err, id) ->
 
-					# level 3
+	# 				# level 3
 
-					_.times _.random(5), ->
-						Organizations.insert
-							title: _.sample fakeOrgs
-							parentId: id
-						, (err, id) ->
+	# 				_.times _.random(3), ->
+	# 					Organizations.insert
+	# 						title: _.sample fakeOrgs
+	# 						parentId: id
+	# 					, (err, id) ->
 
-							#  level 4
+	# 						#  level 4
 
-							_.times _.random(4), ->
-								Organizations.insert
-									title: _.sample fakeOrgs
-									parentId: id
-								, (err, id) ->
+	# 						_.times _.random(3), ->
+	# 							Organizations.insert
+	# 								title: _.sample fakeOrgs
+	# 								parentId: id
+	# 							, (err, id) ->
 
-									#  level 5
+	# 								#  level 5
 
-									_.times _.random(2), ->
-										Organizations.insert
-											title: _.sample fakeOrgs
-											parentId: id
+	# 								_.times _.random(3), ->
+	# 									Organizations.insert
+	# 										title: _.sample fakeOrgs
+	# 										parentId: id
 
 #
 
