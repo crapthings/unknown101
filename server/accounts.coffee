@@ -4,6 +4,8 @@ Accounts.onCreateUser (opt, user) ->
 
 	user['rolesId'] = opt.rolesId or []
 
+	user['organizationId'] = opt.organizationId if opt.organizationId
+
 	return user
 
 #

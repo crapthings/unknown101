@@ -32,6 +32,10 @@ Meteor.methods
 
 	'usersRemove': (id) -> Meteor.users.remove id
 
+	'usersSetPassword': (id, pw) ->
+
+		Accounts.setPassword id, pw if Meteor.isServer
+
 #
 
 if Meteor.isServer

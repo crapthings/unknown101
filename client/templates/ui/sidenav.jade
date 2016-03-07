@@ -12,16 +12,16 @@ template(name='sidenav')
 					a(href='{{pathFor route="organizationsAdd"}}') add organization
 
 		li
-			a(href='{{pathFor route="users"}}') 用户
-			ul
-				li
-					a(href='{{pathFor route="usersAdd"}}') add user
-
-		li
 			a(href='{{pathFor route="roles"}}') 角色
 			ul
 				li
 					a(href='{{pathFor route="rolesAdd"}}') add role
+
+		li
+			a(href='{{pathFor route="users"}}') 用户
+			ul
+				li
+					a(href='{{pathFor route="usersAdd"}}') add user
 
 		li
 			a(href='{{pathFor route="patents"}}') 专利

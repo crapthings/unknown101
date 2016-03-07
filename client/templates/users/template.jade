@@ -28,7 +28,11 @@ template(name='users')
 					td {{roleLabels}}
 
 					td
+
 						a(href='{{pathFor route="usersUpdate"}}') 编辑
+
+						a.method-user-set-password(href='#' data-id='{{_id}}' $b='click: click') 设置密码
+
 						+removeBtn method='usersRemove'
 
 //- users add

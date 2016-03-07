@@ -2,6 +2,16 @@ _ = lodash
 
 checkedPermissions = []
 
+Template.users.viewmodel
+
+	click: (e, t) ->
+		id = ($ e.currentTarget).data 'id'
+		password = prompt '用户名'
+		if password
+			Meteor.call 'usersSetPassword', id, password, (err) ->
+				unless err
+					console.log yes
+
 #
 
 Template.usersAdd.viewmodel

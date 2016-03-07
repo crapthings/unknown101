@@ -26,7 +26,9 @@ template(name='organizationItem')
 
 		a.ui-show-invisible-on-hover(href='#') {{title}}
 
-			a.ui-mgl.ui-invisible.method-add(href='#') 增设
+			a.ui-mgl.ui-invisible.method-add-organization(href='#') 新增机构
+
+			a.ui-mgl.ui-invisible.method-add-user(href='#') 新增用户
 
 			a.ui-mgl.ui-invisible(href='{{pathFor route="organizationsUpdate"}}') 编辑
 
@@ -41,8 +43,8 @@ template(name='organizationItem')
 
 template(name='organizationsAdd')
 
-	+quickForm collection='Organizations' id='organizationsAddForm' type='insert' omitFields='init,parentId'
+	+quickForm collection='Organizations' id='organizationsAddForm' type='insert' omitFields='init,parentId,ancestors'
 
 template(name='organizationsUpdate')
 
-	+quickForm collection='Organizations' doc=this id='organizationsUpdateForm' type='update' omitFields='init,parentId'
+	+quickForm collection='Organizations' doc=this id='organizationsUpdateForm' type='update' omitFields='init,parentId,ancestors'

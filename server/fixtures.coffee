@@ -8,7 +8,7 @@ LTT = Meteor.npmRequire 'list-to-tree'
 
 # Meteor.users.remove {}
 # Roles.remove {}
-Organizations.direct.remove {}
+# Organizations.direct.remove {}
 Patents.remove {}
 
 unless Organizations.findOne { root: true }
@@ -25,12 +25,14 @@ Meteor.startup ->
 	unless Meteor.users.findOne { username: 'admin' }
 		Accounts.createUser
 			username: 'admin'
-			password: 'admin'
+			password: '12345678'
+			organizationId: rootId
 
 	unless Meteor.users.findOne { username: 'demo' }
 		Accounts.createUser
 			username: 'demo'
-			password: 'demo'
+			password: '12345678'
+			organizationId: rootId
 
 	# randomize org tree
 

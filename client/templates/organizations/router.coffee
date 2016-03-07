@@ -4,6 +4,8 @@ _ = lodash
 
 Router.route '/organizations', ->
 
+	console.log Meteor.user()?.organizationId
+
 	Session.set 'search-organization-by-title', undefined
 
 	@render 'organizations',
@@ -12,26 +14,32 @@ Router.route '/organizations', ->
 
 			root: ->
 
-				kw = Session.get 'search-organization-by-title'
+				orgId = Meteor.user()?.organizationId
 
-				if kw
+				Organizations.findOne { _id: orgId }
 
-					results = Organizations.find({ title: new RegExp kw }).fetch()
+				# kw = Session.get 'search-organization-by-title'
 
-					ids = _.chain(results).map('ancestors').flatten().uniq().value()
+				# if kw
 
-					console.log JSON.stringify(ids)
+				# 	ids = _.chain(Organizations.find({ title: new RegExp kw }).fetch()).map('_id').flatten().uniq().value()
 
-					Organizations.findOne { init: true },
-						transform: (doc) ->
-							console.log doc
-							doc.children = ->
-								Organizations.find { _id: { $in: ids } }
-							return doc
+				# 	ancestors = _.chain(results).map('ancestors').flatten().uniq().value()
 
-				else
+				# 	results = _.union ids, ancestors
 
-					Organizations.findOne { init: true }
+				# 	console.log results
+
+				# 	Organizations.findOne { init: true },
+				# 		transform: (root) ->
+				# 			root.children = ->
+				# 				Organizations.find { _id: { $in: results } },
+				# 					transform: (doc) -> doc
+				# 			return root
+
+				# else
+
+				# 	Organizations.findOne { init: true, _id: Meteor.user().organizationId }
 
 ,
 	name: 'organizations'
